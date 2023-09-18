@@ -1,5 +1,3 @@
-Claro, aquí tienes un ejemplo de un README en inglés para tu repositorio de proyectos simples de Python que utilizan las bibliotecas PySimpleGUI y Tkinter:
-
 ---
 
 # Python Simple Projects Showcase
