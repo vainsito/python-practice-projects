@@ -1,14 +1,16 @@
 import PySimpleGUI as sg
 
-# Define the first element
+# Define the first elementena
 
 # In layout you can define the elements that you want to show in the window,
 # Each list inside the list is a row in the window
 layout = [
-    [sg.Text('Text'), sg.Spin(['Item 1', 'Item 2'])], # We can Add Key to the elements to identify them
-    [sg.Button('Ok', key = '-BUTTON1-')], # Conventionally the keys are in capital letters and preceded and followed by an underscore 
-    [sg.Input()],
-    [sg.Text('Hello'), sg.Button('Exit', key = '-BUTTON2-')]
+    [
+        sg.Input( key = '-INPUT-'), 
+        sg.Spin(['Km to Miles', 'kg to pound', 'Sec to min', 'Pts to Cm', 'mm to Cm'], key='-UNITS-'), 
+        sg.Button('Convert', key = '-CONVERT-')
+    ],
+    [sg.Text('Result: ', key = '-OUTPUT-')] 
 ]
 
 # This function take two arguments, the first is the tittle of the window and the second is the layout of the window
@@ -21,10 +23,27 @@ while True:
     
     if event == sg.WIN_CLOSED: # If the user closes the window
         break
-    # We define the events with the name of the buttons
-    if event == 'Button1':
-        print('Button Ok was pressed')
-    if event == 'Button2':
-        print('Button Exit was pressed')
-        break
+    
+    if event == '-CONVERT-':
+        in_value = values['-INPUT-']
+        if in_value.isnumeric():
+            match values['-UNITS-']:
+                case 'Km to Miles':
+                    out_value = round(float(in_value) * 0.621371, 2)
+                    out_string = f'{in_value} km = {out_value} miles'
+                case 'kg to pound':
+                    out_value = round(float(in_value) * 2.20462, 2)
+                    out_string = f'{in_value} kg = {out_value} lb'
+                case 'Sec to min':
+                    out_value = round(float(in_value) / 60, 4)
+                    out_string = f'{in_value} sec = {out_value} min'
+                case 'Pts to Cm':
+                    out_value = round(float(in_value) * 0.0352777777814035, 5)
+                    out_string = f'{in_value} pts = {out_value} cm'
+                case 'mm to Cm':
+                    out_value = round(float(in_value) / 10, 5)
+                    out_string = f'{in_value} mm = {out_value} cm'
+            window['-OUTPUT-'].update(out_string)
+        else:
+            window['-OUTPUT-'].update('Invalid input, please enter a number')        
 window.close()
