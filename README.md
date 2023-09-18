@@ -26,9 +26,7 @@ Here are some of the projects included in this repository:
 
 3. **Weather App**: A simple weather application that fetches weather data from an API and displays it using Tkinter.
 
-4. **Text Editor**: A minimalistic text editor with basic editing features created with PySimpleGUI.
-
-5. **Image Viewer**: An image viewer application to browse and display images using Tkinter.
+4. **Converter**: A simple Converter with basic measurement units created with PySimpleGUI.
 
 Feel free to explore these projects and use them as a reference for your own GUI development endeavors.
 
